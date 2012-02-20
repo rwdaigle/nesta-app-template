@@ -1,7 +1,5 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'rubypython'
-RubyPython.configure :python_exe => 'python2.6'
 
 Bundler.require(:default, ENV['RACK_ENV'] || 'development')
 require 'rack/contrib'

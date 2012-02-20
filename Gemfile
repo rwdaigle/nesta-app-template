@@ -7,7 +7,7 @@ gem 'rack-cache'
 gem 'rack-rewrite'
 gem 'dalli'
 gem 'rack-pygmoku', :git => "git://github.com/krohrbaugh/rack-pygmoku.git"
-gem 'rubypython', '0.5.1'
+gem 'rubypython'
 gem 'maruku'
 
 gem 'nesta-plugin-sluggable'

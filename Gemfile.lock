@@ -44,8 +44,8 @@ GEM
       nesta (>= 0.9.11)
     newrelic_rpm (3.3.2)
     nokogiri (1.5.0)
-    pygments.rb (0.2.3)
-      rubypython (>= 0.5.1)
+    pygments.rb (0.2.4)
+      rubypython (~> 0.5.3)
     rack (1.4.1)
     rack-cache (1.1)
       rack (>= 0.4)
@@ -55,7 +55,7 @@ GEM
     rdiscount (1.6.8)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rubypython (0.5.1)
+    rubypython (0.5.3)
       blankslate (>= 2.1.2.3)
       ffi (~> 1.0.7)
     rubyzip (0.9.6.1)
@@ -89,5 +89,5 @@ DEPENDENCIES
   rack-contrib
   rack-pygmoku!
   rack-rewrite
-  rubypython (= 0.5.1)
+  rubypython
   thin
