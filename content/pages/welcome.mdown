@@ -29,6 +29,10 @@ NESTA_DISQUS_SHORT_NAME=ryandaiglecom
 NESTA_PRODUCTION__GOOGLE_ANALYTICS_CODE=UA-77805-8
 </code></pre>
 
+<div class="note">
+Though the double quotes around the <code>NESTA_TITLE</code> value are ugly when rendered locally, they are necessary for any value with spaces when transferring the environment to Heroku or using the Heroku CLI.
+</div>
+
 Updating the site on Heroku with new configuration variables can be accomplished with this command:
 
 <pre lang="bash"><code>
@@ -54,17 +58,12 @@ Please see Nesta CMS's [instructions for writing articles](http://nestacms.com/d
 The app template comes with Ryan's [clean nesta theme](https://github.com/rwdaigle/nesta-theme-clean) bundled. To update the theme and get the latest features and styles execute the following starting in your site's local root directory:
 
 <pre lang="bash"><code>
-$ git submodule update
-$ cd themes/clean
-$ git checkout master
-$ git pull origin master
-$ cd ../..
-$ git commit -m "Update to latest clean theme"
+$ ./update-theme.sh
 </code></pre>
 
 ## Syntax highlighting
 
-The clean theme supports syntax highlighting with Pygments. Here are some examples (view the [source of the file](https://raw.github.com/rwdaigle/nesta-app-template/master/content/pages/welcome.mdown) to see Markdown syntax)
+The clean theme supports syntax highlighting with [Pygments](http://pygments.org/). Here are some examples (view the [source of the file](https://raw.github.com/rwdaigle/nesta-app-template/master/content/pages/welcome.mdown) to see Markdown syntax)
 
 ### Ruby
 
@@ -96,6 +95,8 @@ $ curl "http://gist.github.com/raw/13212qw" > test.txt
 
 Please see Heroku's [custom domain instructions](http://devcenter.heroku.com/articles/custom-domains) to setup your own domain pointing to the site.
 
+<!--
 ## New Relic
 
 _Work in progress_
+-->

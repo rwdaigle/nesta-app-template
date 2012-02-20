@@ -29,5 +29,5 @@ Assuming you have a Heroku account and have successfully installed the [Heroku T
 **The site will _not_ incur any charges on Heroku and does not use `sudo`. Please review the [script source](https://raw.github.com/rwdaigle/nesta-app-template/master/deploy.sh) before executing.**
 
 ```term
-$ cat deploy.sh | sh
+$ ./deploy.sh
 ```
