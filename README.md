@@ -1,5 +1,7 @@
 # Nesta CMS App Template
 
+See an example of this template and the bundled [clean theme](https://github.com/rwdaigle/nesta-theme-clean) running on Heroku at [http://glowing-robot-5990.herokuapp.com/](http://glowing-robot-5990.herokuapp.com/).
+
 See this blog post for full background, installation and usage details: [http://ryandaigle.com/a/pygments-syntax-highlighting-nesta-cms-heroku](http://ryandaigle.com/a/pygments-syntax-highlighting-nesta-cms-heroku)
 
 ## Run locally

@@ -13,7 +13,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     RedCloth (4.2.9)
-    addressable (2.2.6)
+    addressable (2.2.7)
     blankslate (2.1.2.4)
     daemons (1.1.8)
     dalli (1.1.4)
@@ -23,7 +23,7 @@ GEM
       term-ansicolor (~> 1.0.7)
       thor (>= 0.13.6)
     haml (3.1.4)
-    heroku (2.19.2)
+    heroku (2.20.1)
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
       rubyzip
@@ -42,7 +42,7 @@ GEM
       sinatra (= 1.2.6)
     nesta-plugin-sluggable (0.0.1)
       nesta (>= 0.9.11)
-    newrelic_rpm (3.3.1)
+    newrelic_rpm (3.3.2)
     nokogiri (1.5.0)
     pygments.rb (0.2.4)
       rubypython (~> 0.5.3)
@@ -58,8 +58,8 @@ GEM
     rubypython (0.5.3)
       blankslate (>= 2.1.2.3)
       ffi (~> 1.0.7)
-    rubyzip (0.9.5)
-    sass (3.1.14)
+    rubyzip (0.9.6.1)
+    sass (3.1.15)
     shotgun (0.9)
       rack (>= 1.0)
     sinatra (1.2.6)

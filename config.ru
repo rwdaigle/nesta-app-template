@@ -5,7 +5,7 @@ Bundler.require(:default, ENV['RACK_ENV'] || 'development')
 require 'rack/contrib'
 require 'newrelic_rpm'
 
-if ENV['RACK_ENV'] == 'production'
+unless ENV['RACK_ENV'] == 'production'
   use Rack::ShowExceptions
 end
 
