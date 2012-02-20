@@ -1,0 +1,3 @@
+[submodule "themes/clean"]
+	path = themes/clean
+	url = git@github.com:rwdaigle/nesta-theme-clean.git

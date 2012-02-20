@@ -1,0 +1,21 @@
+Template: home
+
+%ol.index
+  - latest_articles(15).each do |article|
+    %li
+      %span.header= format_date(article.date)
+      %span.arrow &raquo;
+      %span.main
+        %a(href="#{article.abspath}")= article.title || article.heading
+      %span.meta
+        %a(href="#{article.abspath}#disqus_thread")
+
+:javascript
+  var disqus_shortname = '#{Nesta::Config.disqus_short_name}';
+
+  (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
