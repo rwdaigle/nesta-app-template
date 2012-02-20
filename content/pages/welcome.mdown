@@ -1,0 +1,101 @@
+Title: Getting Started with the Nesta CMS App Template
+Date: February 20, 2012
+
+Welcome to [Nesta CMS](http://nestacms.com) and the [starter template](https://github.com/rwdaigle/nesta-app-template)/[clean theme](https://github.com/rwdaigle/nesta-app-template) by [Ryan Daigle](http://ryandaigle.com). Now that you've got the site running let's look at how to use it.
+
+## Customization
+
+Open the `.env` file and edit the configuration values for your site and third-party services. For reference [my site's](http://ryandaigle.com) `.env` file looks like this:
+
+<h5 class="file">.env</h5>
+<pre lang="text"><code>
+NESTA_TITLE="Ryan Daigle"
+NESTA_FEED_URL=http://feeds.feedburner.com/RyansScraps
+
+NESTA_AUTHOR__NAME=Ryan Daigle
+NESTA_AUTHOR__EMAIL=ryan.daigle@gmail.com
+NESTA_AUTHOR__URI=http://ryandaigle.com
+NESTA_AUTHOR__TWITTER=rwdaigle
+NESTA_AUTHOR__GITHUB=rwdaigle
+NESTA_AUTHOR__LINKEDIN=rwdaigle
+
+NESTA_THEME=clean
+NESTA_POWERED_BY=true
+
+NESTA_CACHE=false
+NESTA_CONTENT=content
+
+NESTA_DISQUS_SHORT_NAME=ryandaiglecom
+NESTA_PRODUCTION__GOOGLE_ANALYTICS_CODE=UA-77805-8
+</code></pre>
+
+Updating the site on Heroku with new configuration variables can be accomplished with this command:
+
+<pre lang="bash"><code>
+$ cat .env | tr '\n' ' ' | xargs heroku config:add 
+</code></pre>
+
+## Deploying
+
+After the initial app template script runs you can deploy to your site on Heroku just as you would any Heroku site with a `git push heroku master` after committing any changes to the git repository. This includes any new articles or content updates you make.
+
+<pre lang="bash"><code>
+$ git add .
+$ git commit -m "Updates"
+$ git push heroku master
+</code></pre>
+
+## Writing articles
+
+Please see Nesta CMS's [instructions for writing articles](http://nestacms.com/docs/creating-content/pages) to add pages and new posts to your site.
+
+## Update theme
+
+The app template comes with Ryan's [clean nesta theme](https://github.com/rwdaigle/nesta-theme-clean) bundled. To update the theme and get the latest features and styles execute the following starting in your site's local root directory:
+
+<pre lang="bash"><code>
+$ git submodule update
+$ cd themes/clean
+$ git checkout master
+$ git pull origin master
+$ cd ../..
+$ git commit -m "Update to latest clean theme"
+</code></pre>
+
+## Syntax highlighting
+
+The clean theme supports syntax highlighting with Pygments. Here are some examples (view the [source of the file](https://raw.github.com/rwdaigle/nesta-app-template/master/content/pages/welcome.mdown) to see Markdown syntax)
+
+### Ruby
+
+<h5 class="file">ruby</h5>
+<pre lang='ruby'><code>
+def greeting
+  'Hello World!'
+end
+</code></pre>
+
+### Javascript
+<h5 class="file">lib/heroku.js</h5>
+<pre lang='javascript'><code>
+var request = require('request'),
+  fs = require('fs'),
+  spawn = require('child_process').spawn,
+  Hash = require('hashish');;
+
+var version = JSON.parse(fs.readFileSync('package.json','utf8')).version;
+</code></pre>
+
+### Terminal output
+
+<pre lang='bash'><code>
+$ curl "http://gist.github.com/raw/13212qw" > test.txt
+</code></pre>
+
+## Custom domains
+
+Please see Heroku's [custom domain instructions](http://devcenter.heroku.com/articles/custom-domains) to setup your own domain pointing to the site.
+
+## New Relic
+
+_Work in progress_

@@ -1,13 +1,13 @@
 require 'rubygems'
 require 'bundler/setup'
 
-Bundler.require(:default, ENV['RACK_ENV'])
+Bundler.require(:default, ENV['RACK_ENV'] || 'development')
 require 'rack/contrib'
 require 'newrelic_rpm'
 
-use Rack::ShowExceptions if ENV['RACK_ENV'] == 'development'
+use Rack::ShowExceptions unless ENV['RACK_ENV'] == 'production'
 
-ttl = ENV['DEFAULT_TTL'].to_i || 300
+ttl = ENV['DEFAULT_TTL'].to_i || 3600
 use Rack::Cache,
   :verbose     => true,
   :default_ttl => ttl,
@@ -24,17 +24,11 @@ use Rack::ETag
 use Rack::CommonLogger
 
 use Rack::Rewrite do
-
-  # Old ryan's scraps URLs
-  # http://ryandaigle.com/articles/2009/8/6/what-s-new-in-edge-rails-cleaner-restful-controllers-w-respond_with
-  r301 %r{/articles/(\d{4})/(\d+)/(\d+)/(.+)}, 'http://archives.ryandaigle.com/articles/$1/$2/$3/$4'
-
-  # http://ryandaigle.com/archives/2007/10
-  r301 %r{/archives/(\d{4})/(\d+)}, 'http://archives.ryandaigle.com/archives/$1/$2'
-
-  r301 %r{/articles.xml(\?.*)?}, 'http://feeds.feedburner.com/RyansScraps', :if => Proc.new { |rack_env|
-    ENV['RACK_ENV'] == 'production' && rack_env['HTTP_USER_AGENT'] !~ /FeedBurner/
-  }
+  if feed_url = ENV['NESTA_FEED_URL']
+    r301 %r{/articles.xml(\?.*)?}, feed_url, :if => Proc.new { |rack_env|
+      ENV['RACK_ENV'] == 'production' && rack_env['HTTP_USER_AGENT'] !~ /FeedBurner/
+    }
+  end
 end
 
 require 'nesta/env'
