@@ -5,9 +5,11 @@ Bundler.require(:default, ENV['RACK_ENV'] || 'development')
 require 'rack/contrib'
 require 'newrelic_rpm'
 
-use Rack::ShowExceptions unless ENV['RACK_ENV'] == 'production'
+if ENV['RACK_ENV'] == 'production'
+  use Rack::ShowExceptions
+end
 
-ttl = ENV['DEFAULT_TTL'].to_i || 3600
+ttl = ENV['DEFAULT_TTL'] ? ENV['DEFAULT_TTL'].to_i : 3600
 use Rack::Cache,
   :verbose     => true,
   :default_ttl => ttl,
