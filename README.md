@@ -18,6 +18,16 @@ remote: Counting objects: 90, done.
 Using bundler (1.0.15) 
 Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
 
+$ git submodule update -i
+Submodule 'themes/clean' (git@github.com:rwdaigle/nesta-theme-clean.git) registered for path 'themes/clean'
+Cloning into themes/clean...
+remote: Counting objects: 80, done.
+remote: Compressing objects: 100% (65/65), done.
+remote: Total 80 (delta 25), reused 67 (delta 12)
+Receiving objects: 100% (80/80), 66.09 KiB, done.
+Resolving deltas: 100% (25/25), done.
+Submodule path 'themes/clean': checked out 'c8b704fe4b7c1b602460f5923b14b75e9e3ea42b'
+
 $ foreman start
 14:25:47 web.1     | started with pid 59647
 ```
