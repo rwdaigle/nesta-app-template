@@ -5,8 +5,8 @@ GIT
     rack-pygmoku (0.1.0)
       nokogiri (~> 1.4)
       nokogiri (~> 1.4)
-      pygments.rb (~> 0.1)
       pygments.rb (~> 0)
+      pygments.rb (~> 0.1)
       rack
 
 GEM
