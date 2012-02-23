@@ -1,10 +1,10 @@
 # Nesta CMS App Template
 
-See an example of this template and the bundled [clean theme](https://github.com/rwdaigle/nesta-theme-clean) running on Heroku at [http://glowing-robot-5990.herokuapp.com/](http://glowing-robot-5990.herokuapp.com/).
+See an example of this template and the bundled [clean theme](https://github.com/rwdaigle/nesta-theme-clean) running on Heroku at [http://nesta-app-template.herokuapp.com/](http://nesta-app-template.herokuapp.com/).
 
 ![App template screenshote](http://f.cl.ly/items/181g441O352Z2M0M1S2J/Screen%20shot%202012-02-20%20at%204.36.37%20PM.png)
 
-See this blog post for full background, installation and usage details: [http://ryandaigle.com/a/pygments-syntax-highlighting-nesta-cms-heroku](http://ryandaigle.com/a/pygments-syntax-highlighting-nesta-cms-heroku)
+See this blog post for full background, installation and usage details: [http://ryandaigle.com/a/deploying-nesta-cms-blog-heroku-cedar-pygments-syntax-highlighting](http://ryandaigle.com/a/deploying-nesta-cms-blog-heroku-cedar-pygments-syntax-highlighting)
 
 ## Run locally
 
@@ -31,6 +31,6 @@ $ ./deploy.sh
 
 ## Next
 
-Once the app is running view the 'Getting Started with the Nesta CMS App Template' entry to see how to customize, update and maintain the site.
+Once the app is running view the [Getting Started with the Nesta CMS App Template](http://nesta-app-template.herokuapp.com/welcome) entry to see how to customize, update and maintain the site.
 
 ![Getting started](http://f.cl.ly/items/2q3X3J3T0M2D1f372f1V/Screen%20shot%202012-02-20%20at%204.38.39%20PM.png)
