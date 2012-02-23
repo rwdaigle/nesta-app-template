@@ -5,10 +5,12 @@ Welcome to [Nesta CMS](http://nestacms.com) and the [starter template](https://g
 
 ## Customization
 
-Open the `.env` file and edit the configuration values for your site and third-party services. For reference [my site's](http://ryandaigle.com) `.env` file looks like this:
+Go to the local directory where your site was cloned and open the `.env` file. Edit the configuration values for your site and third-party services (Google analytics, FeedBurner, Disqus, Twitter, GitHub, LinkedIn etc...). For reference [my site's](http://ryandaigle.com) `.env` file looks like this:
 
 <h5 class="file">.env</h5>
 <pre lang="text"><code>
+RACK_ENV=development
+
 NESTA_TITLE="Ryan Daigle"
 NESTA_FEED_URL=http://feeds.feedburner.com/RyansScraps
 
@@ -27,6 +29,8 @@ NESTA_CONTENT=content
 
 NESTA_DISQUS_SHORT_NAME=ryandaiglecom
 NESTA_PRODUCTION__GOOGLE_ANALYTICS_CODE=UA-77805-8
+
+GAUGES_SITE_ID=123456789
 </code></pre>
 
 <div class="note">
@@ -36,12 +40,12 @@ Though the double quotes around the <code>NESTA_TITLE</code> value are ugly when
 Updating the site on Heroku with new configuration variables can be accomplished with this command:
 
 <pre lang="bash"><code>
-$ cat .env | tr '\n' ' ' | xargs heroku config:add 
+$ cat .env | grep -v 'RACK_ENV' | tr '\n' ' ' | xargs heroku config:add 
 </code></pre>
 
 ## Deploying
 
-After the initial app template script runs you can deploy to your site on Heroku just as you would any Heroku site with a `git push heroku master` after committing any changes to the git repository. This includes any new articles or content updates you make.
+You can eploy to your site on Heroku just as you would any Heroku site with a `git push heroku master` after committing any changes to the git repository. This includes any new articles or content updates you make.
 
 <pre lang="bash"><code>
 $ git add .
@@ -53,21 +57,23 @@ $ git push heroku master
 
 Please see Nesta CMS's [instructions for writing articles](http://nestacms.com/docs/creating-content/pages) to add pages and new posts to your site.
 
-## Update theme
+## Updates
 
-The app template comes with Ryan's [clean nesta theme](https://github.com/rwdaigle/nesta-theme-clean) bundled. To update the theme and get the latest features and styles execute the following starting in your site's local root directory:
+Since your site is a fork of the app template any updates to either the theme or the template itself can be easily merged into your site. The template ships with an update script that does this automatically. Execute the following starting in your site's local root directory:
 
 <pre lang="bash"><code>
-$ ./update-theme.sh
+$ ./update.sh
 </code></pre>
+
+All the script does is pull in the latest changes to an `upstream` branch and rebase against it. It commits any local changes first to minimize conflicts. If you're comfortable managing this process yourself please feel free to do so as the script is provided for convenience only.
 
 ## Syntax highlighting
 
-The clean theme supports syntax highlighting with [Pygments](http://pygments.org/). Here are some examples (view the [source of the file](https://raw.github.com/rwdaigle/nesta-app-template/master/content/pages/welcome.mdown) to see Markdown syntax)
+The "clean" theme supports syntax highlighting with [Pygments](http://pygments.org/). Here are some examples (view the [source of the file](https://raw.github.com/rwdaigle/nesta-app-template/master/content/pages/welcome.mdown) to see Markdown syntax)
 
 ### Ruby
 
-<h5 class="file">ruby</h5>
+<h5 class="file">example.rb</h5>
 <pre lang='ruby'><code>
 def greeting
   'Hello World!'
@@ -75,7 +81,7 @@ end
 </code></pre>
 
 ### Javascript
-<h5 class="file">lib/heroku.js</h5>
+<h5 class="file">lib/example.js</h5>
 <pre lang='javascript'><code>
 var request = require('request'),
   fs = require('fs'),
@@ -91,12 +97,46 @@ var version = JSON.parse(fs.readFileSync('package.json','utf8')).version;
 $ curl "http://gist.github.com/raw/13212qw" > test.txt
 </code></pre>
 
+## Analytics
+
+While there's support for Google Analytics built into the site template and theme (configurable by editing the `.env` file) I would recommend taking a look at [Gauges](http://get.gaug.es/) instead. It is a much more clean and concise way to measure your site's traffic, visitors and general analytics and has native iPhone and Android apps.
+
+![Gaug.es screenshot](http://f.cl.ly/items/0M1H3W2t3c1j0i2f1o0X/Screen%20Shot%202012-02-22%20at%209.40.53%20PM.png)
+
+To update your site to send statistics to Gauges simply set the `GAUGES_SITE_ID` configuration variable on Heroku.
+
+<pre lang='bash'><code>
+$ heroku config:add GAUGES_SITE_ID=12345678
+Adding config vars and restarting app... done, v72
+  GAUGES_SITE_ID => 12345678
+</code></pre>
+
+## Performance
+
+[New Relic](http://newrelic.com), available for free on Heroku, is an incredibly useful tool for understanding how your site is operating, what kind of performance it's getting and where any bottlenecks are.
+
+![New Relic screenshot](http://f.cl.ly/items/0i2m1N3C2U2f070n3q07/Screen%20Shot%202012-02-22%20at%2010.06.48%20PM.png)
+
+The app template's `deploy.sh` script automatically sets up the New Relic add-on. Open up the New Relic dashboard using the `heroku addons:open` command.
+
+<pre lang='bash'><code>
+$ heroku addons:open newrelic
+</code></pre>
+
+## Caching
+
+By default the site will cache pages and assets (images, css, js) for one hour. This improves the performance of the site while still allowing a reasonable level of freshness. If your site is like most blogs, this number can be greatly increased since the content rarely changes. To change your site settings to cache assets for 12 hours run the `heroku config:add` command setting `DEFAULT_TTL` to the number of seconds.
+
+<pre lang='bash'><code>
+$ heroku config:add DEFAULT_TTL=43200
+Adding config vars and restarting app... done, v72
+  DEFAULT_TTL => 43200
+</code></pre>
+
 ## Custom domains
 
 Please see Heroku's [custom domain instructions](http://devcenter.heroku.com/articles/custom-domains) to setup your own domain pointing to the site.
 
-<!--
-## New Relic
+## Troubleshooting
 
-_Work in progress_
--->
+Any issues that come up should be reported against the [project in GitHub](https://github.com/rwdaigle/nesta-app-template) or by commenting on the original [announcement post](http://ryandaigle.com/a/deploying-nesta-cms-blog-heroku-cedar-pygments-syntax-highlighting).
