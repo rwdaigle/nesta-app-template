@@ -13,7 +13,6 @@ gem 'maruku'
 gem 'nesta-plugin-sluggable'
 
 group :development do
-  gem 'heroku'
   gem 'foreman'
 end
 
